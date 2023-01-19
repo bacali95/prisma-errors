@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "prisma-errors-core": "libs/prisma-errors-core"
+  },
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json"
+}

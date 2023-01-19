@@ -1,0 +1,36 @@
+{
+  "name": "prisma-errors-core",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "project": "libs/prisma-errors-core/package.json",
+        "outputPath": "dist/libs/prisma-errors-core",
+        "main": "libs/prisma-errors-core/src/index.ts",
+        "tsConfig": "libs/prisma-errors-core/tsconfig.lib.json",
+        "format": ["cjs", "esm"],
+        "compiler": "tsc"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/prisma-errors-core/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/prisma-errors-core/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
