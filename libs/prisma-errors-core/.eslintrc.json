@@ -1,19 +1,9 @@
 {
-  "extends": ["plugin:@nrwl/nx/react", "../../.eslintrc.json"],
+  "extends": ["../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {}
-    },
-    {
-      "files": ["*.ts", "*.tsx"],
-      "rules": {
-        "react/jsx-no-useless-fragment": "off"
-      }
-    },
-    {
-      "files": ["*.js", "*.jsx"],
+      "files": ["*.ts", "*.js"],
       "rules": {}
     }
   ]
