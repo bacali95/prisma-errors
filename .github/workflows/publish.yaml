@@ -2,17 +2,21 @@ name: Publish library
 
 on:
   push:
-    tags:
-      - v*
+    branches:
+      - main
 
 concurrency: ${{ github.ref }}
+permissions:
+  contents: read # for checkout
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      packages: write
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
+      id-token: write # to enable use of OIDC for npm provenance
     steps:
       - name: Check out the code 🗄
         uses: actions/checkout@v4
@@ -35,6 +39,7 @@ jobs:
         run: |
           cp LICENCE README.md dist/libs/prisma-errors-core
           cd dist/libs/prisma-errors-core
-          npm publish --tag latest --access public
+          npx semantic-release
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

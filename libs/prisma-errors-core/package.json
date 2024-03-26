@@ -15,5 +15,11 @@
   },
   "bugs": {
     "url": "https://github.com/bacali95/prisma-errors/issues"
+  },
+  "release": {
+    "branches": [
+      "main",
+      "next"
+    ]
   }
 }
