@@ -29,6 +29,13 @@ jobs:
       - name: Check the prettiness of the code 💅
         run: yarn prettier:check
 
+      - name: Run database
+        run: |
+          yarn compose-up
+          sleep 10
+          yarn prisma:generate
+          yarn prisma:migrate:deploy
+
       - name: Run unit tests 🧪
         run: yarn test prisma-errors-core
 

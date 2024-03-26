@@ -1,8 +1,8 @@
-name: Build Demo
+name: Test
 
 on:
   push:
-    branches:
+    branches-ignore:
       - main
 
 concurrency: ${{ github.ref }}
