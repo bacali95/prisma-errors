@@ -1,6 +1,6 @@
 {
   "name": "prisma-errors",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "private": true,
   "packageManager": "yarn@4.1.1",
@@ -12,7 +12,8 @@
     "prisma:migrate:deploy": "prisma migrate deploy",
     "compose-up": "docker compose -f docker-compose.test.yml up -d",
     "prettier:check": "nx format:check",
-    "prettier:fix": "nx format:write"
+    "prettier:fix": "nx format:write",
+    "release": "standard-version"
   },
   "dependencies": {
     "@prisma/client": "^5.11.0",
@@ -45,10 +46,15 @@
     "jest-environment-jsdom": "^29.7.0",
     "nx": "18.1.3",
     "prettier": "^3.2.5",
-    "semantic-release": "^23.0.6",
+    "standard-version": "^9.5.0",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.3"
+  },
+  "standard-version": {
+    "commitAll": true,
+    "packageFiles": "libs/tw-react-components/package.json",
+    "bumpFiles": "libs/tw-react-components/package.json"
   },
   "volta": {
     "node": "20.11.1",
