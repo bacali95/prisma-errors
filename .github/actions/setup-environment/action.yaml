@@ -38,4 +38,5 @@ runs:
       if: inputs.skip-install != 'true'
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
 
