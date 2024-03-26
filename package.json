@@ -1,6 +1,6 @@
 {
   "name": "prisma-errors",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "license": "MIT",
   "private": true,
   "packageManager": "yarn@4.1.1",
