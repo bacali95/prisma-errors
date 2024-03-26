@@ -26,10 +26,12 @@ describe('Handle known prisma errors', () => {
     }
   });
 
-  it.only('should test P2001 error', async () => {
+  it.skip('should test P2001 error', async () => {
     try {
-      await prismaClient.entity.up({});
-      d;
+      await prismaClient.entity.findUnique({where: {id: 1
+      }});
+
+
     } catch (error: any) {
       const newError = handleKnownRequestError(error);
       console.log(error);

@@ -15,25 +15,9 @@ jobs:
       packages: write
     steps:
       - name: Check out the code 🗄
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Setup NodeJs 16 💿
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16.x'
-
-      - name: Setup node modules cache 📦
-        uses: actions/cache@v3
-        with:
-          path: |
-            **/node_modules
-            ~/.cache/Cypress
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node_modules-
-
-      - name: Install packages 🏭
-        run: yarn install
+      - uses: ./.github/actions/setup-environment
 
       - name: Lint the code 🕵
         run: yarn lint

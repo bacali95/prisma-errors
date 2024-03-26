@@ -1,0 +1,43 @@
+name: 'Setup environment'
+description: 'This action will checkout code, setup node and retrieve the cache'
+
+runs:
+  using: composite
+  steps:
+    - name: Set Yarn version
+      shell: bash
+      run: yarn set version 4.1.1
+
+    - name: Setup NodeJs 20 💿
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@back-n-soft'
+
+    - name: Get yarn cache directory path
+      id: yarn-cache-dir-path
+      shell: bash
+      run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+
+    - name: Restore yarn cache 📦
+      uses: actions/cache/restore@v4
+      id: yarn-cache
+      if: inputs.skip-install != 'true'
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
+    - name: Install packages 🏭
+      shell: bash
+      run: yarn --immutable
+
+    - name: Save yarn cache 📦
+      uses: actions/cache/save@v4
+      id: yarn-cache
+      if: inputs.skip-install != 'true'
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+
