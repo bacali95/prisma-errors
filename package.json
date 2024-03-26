@@ -5,9 +5,9 @@
   "private": true,
   "packageManager": "yarn@4.1.1",
   "scripts": {
-    "build": "nx affected:build",
-    "test": "nx affected:test",
-    "lint": "nx affected:lint",
+    "build": "nx build",
+    "test": "nx test",
+    "lint": "nx lint",
     "prisma:generate": "prisma generate",
     "prisma:migrate:deploy": "prisma migrate deploy",
     "compose-up": "docker compose -f docker-compose.test.yml up -d",

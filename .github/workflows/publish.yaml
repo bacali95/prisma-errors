@@ -20,21 +20,21 @@ jobs:
       - uses: ./.github/actions/setup-environment
 
       - name: Lint the code 🕵
-        run: yarn lint
+        run: yarn lint prisma-errors-core
 
       - name: Check the prettiness of the code 💅
         run: yarn prettier:check
 
       - name: Run unit tests 🧪
-        run: yarn test
+        run: yarn test prisma-errors-core
 
       - name: Build code 🛠
-        run: yarn build
+        run: yarn build prisma-errors-core
 
       - name: Publish the library 🚀
         run: |
           cp LICENCE README.md dist/libs/prisma-errors-core
           cd dist/libs/prisma-errors-core
-          npm publish --tag latest
+          npm publish --tag latest --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

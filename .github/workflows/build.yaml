@@ -17,7 +17,7 @@ jobs:
       - uses: ./.github/actions/setup-environment
 
       - name: Lint the code 🕵
-        run: yarn lint
+        run: yarn lint prisma-errors-core
 
       - name: Check the prettiness of the code 💅
         run: yarn prettier:check
@@ -30,7 +30,7 @@ jobs:
           yarn prisma:migrate:deploy
 
       - name: Run unit tests 🧪
-        run: yarn test
+        run: yarn test prisma-errors-core
 
       - name: Build code 🛠
-        run: yarn build
+        run: yarn build prisma-errors-core

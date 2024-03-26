@@ -13,7 +13,10 @@
         "main": "libs/prisma-errors-core/src/index.ts",
         "tsConfig": "libs/prisma-errors-core/tsconfig.lib.json",
         "format": ["cjs", "esm"],
-        "compiler": "tsc"
+        "compiler": "tsc",
+        "external": "all",
+        "generateExportsField": true,
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "lint": {
