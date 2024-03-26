@@ -53,8 +53,8 @@
   },
   "standard-version": {
     "commitAll": true,
-    "packageFiles": "libs/tw-react-components/package.json",
-    "bumpFiles": "libs/tw-react-components/package.json"
+    "packageFiles": "libs/prisma-errors-core/package.json",
+    "bumpFiles": "libs/prisma-errors-core/package.json"
   },
   "volta": {
     "node": "20.11.1",
