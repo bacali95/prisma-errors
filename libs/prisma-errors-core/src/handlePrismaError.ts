@@ -1,6 +1,7 @@
-import { Prisma } from "@prisma/client";
-import { PrismaError } from "./PrismaError";
-import { handleClientKnownRequestError } from "./handleClientKnownRequestError";
+import { Prisma } from '@prisma/client';
+
+import { PrismaError } from './PrismaError';
+import { handleClientKnownRequestError } from './handleClientKnownRequestError';
 
 export type AnyPrismaError =
   | Prisma.PrismaClientKnownRequestError

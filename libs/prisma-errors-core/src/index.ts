@@ -1,2 +1,2 @@
-export * from './handleClientKnownRequestError'
-export * from './handlePrismaError'
+export * from './handleClientKnownRequestError';
+export * from './handlePrismaError';
