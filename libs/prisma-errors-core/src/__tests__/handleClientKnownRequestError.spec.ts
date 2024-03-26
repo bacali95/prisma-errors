@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 
-import { handleKnownRequestError } from '../handleKnownRequestError';
+import { handleClientKnownRequestError } from '../handleClientKnownRequestError';
 
 describe('Handle known prisma errors', () => {
   let prismaClient: PrismaClient;
@@ -16,25 +16,10 @@ describe('Handle known prisma errors', () => {
       await prismaClient.entity.create({
         data: { shortString: 'Too long string' },
       });
+
+      expect(false).toBe(true);
     } catch (error: any) {
-      const newError = handleKnownRequestError(error);
-
-      expect(newError.name).toBe('PrismaClientKnownError');
-      expect(newError.statusCode).toBe(413);
-      expect(newError.message).toBe('Request Entity Too Large');
-      expect(newError.data.meta?.['column_name']).toBe('(not available)');
-    }
-  });
-
-  it.skip('should test P2001 error', async () => {
-    try {
-      await prismaClient.entity.findUnique({where: {id: 1
-      }});
-
-
-    } catch (error: any) {
-      const newError = handleKnownRequestError(error);
-      console.log(error);
+      const newError = handleClientKnownRequestError(error);
 
       expect(newError.name).toBe('PrismaClientKnownError');
       expect(newError.statusCode).toBe(413);

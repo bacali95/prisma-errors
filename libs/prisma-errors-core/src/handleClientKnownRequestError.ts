@@ -13,7 +13,7 @@ export class PrismaClientKnownError extends PrismaError {
   }
 }
 
-export function handleKnownRequestError(error: Prisma.PrismaClientKnownRequestError): PrismaError {
+export function handleClientKnownRequestError(error: Prisma.PrismaClientKnownRequestError): PrismaError {
   switch (error.code) {
     case 'P2000':
       return new PrismaClientKnownError(StatusCodes.REQUEST_TOO_LONG, error);
