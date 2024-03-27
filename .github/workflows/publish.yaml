@@ -20,31 +20,29 @@ jobs:
         with:
           npm-token: ${{ secrets.NPM_AUTH_TOKEN }}
 
-      # - name: Lint the code 🕵
-      #   run: yarn lint prisma-errors-core
+      - name: Lint the code 🕵
+        run: yarn lint prisma-errors-core
 
-      # - name: Check the prettiness of the code 💅
-      #   run: yarn prettier:check
+      - name: Check the prettiness of the code 💅
+        run: yarn prettier:check
 
-      # - name: Run database
-      #   run: |
-      #     yarn compose-up
-      #     sleep 10
-      #     yarn prisma:generate
-      #     yarn prisma:migrate:deploy
+      - name: Run database
+        run: |
+          yarn compose-up
+          sleep 10
+          yarn prisma:generate
+          yarn prisma:migrate:deploy
 
-      # - name: Run unit tests 🧪
-      #   run: yarn test prisma-errors-core
+      - name: Run unit tests 🧪
+        run: yarn test prisma-errors-core
 
       - name: Build code 🛠
         run: yarn build prisma-errors-core
 
       - name: Publish the library 🚀
         run: |
-          echo ${NODE_AUTH_TOKEN}
           cp LICENCE README.md dist/libs/prisma-errors-core
           cd dist/libs/prisma-errors-core
-          npm config list
           npm publish --tag latest --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

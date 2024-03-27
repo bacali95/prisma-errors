@@ -9,7 +9,11 @@ concurrency: ${{ github.ref }}
 
 jobs:
   build:
+    name: Test ${{ matrix.project }}
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project: [prisma-errors-core]
     steps:
       - name: Check out the code 🗄
         uses: actions/checkout@v4
@@ -17,20 +21,19 @@ jobs:
       - uses: ./.github/actions/setup-environment
 
       - name: Lint the code 🕵
-        run: yarn lint prisma-errors-core
+        run: yarn lint ${{ matrix.project }}
 
       - name: Check the prettiness of the code 💅
-        run: yarn prettier:check
+        run: yarn prettier:check ${{ matrix.project }}
 
       - name: Run database
         run: |
           yarn compose-up
-          sleep 10
           yarn prisma:generate
           yarn prisma:migrate:deploy
 
       - name: Run unit tests 🧪
-        run: yarn test prisma-errors-core
+        run: yarn test ${{ matrix.project }}
 
       - name: Build code 🛠
-        run: yarn build prisma-errors-core
+        run: yarn build ${{ matrix.project }}
