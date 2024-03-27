@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/bacali95/prisma-errors/compare/v0.0.9...v0.0.10) (2024-03-27)
+
+
+### Bug Fixes
+
+* update handling prisma known errors ([c38c8f9](https://github.com/bacali95/prisma-errors/commit/c38c8f9e7f829ffc0de50a461ee0289ee8415a35))
+
 ### [0.0.9](https://github.com/bacali95/prisma-errors/compare/v0.0.8...v0.0.9) (2024-03-27)
 
 ### [0.0.8](https://github.com/bacali95/prisma-errors/compare/v0.0.7...v0.0.8) (2024-03-27)

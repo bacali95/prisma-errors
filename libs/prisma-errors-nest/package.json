@@ -1,7 +1,7 @@
 {
   "name": "@prisma-errors/nest",
   "description": "A NestJS library of handling prisma errors.",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "license": "MIT",
   "homepage": "https://bacali95.github.io/prisma-errors",
   "author": {
