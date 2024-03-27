@@ -1,7 +1,7 @@
 {
   "name": "@prisma-errors/core",
   "description": "A set of React components build with TailwindCSS to make a nice dashboard.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "homepage": "https://bacali95.github.io/prisma-errors",
   "author": {
