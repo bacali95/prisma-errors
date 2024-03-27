@@ -12,7 +12,8 @@ datasource db {
 
 model Entity {
   id              Int            @id @default(autoincrement())
-  shortString     String         @db.VarChar(5)
+  smallInt        Int?           @db.SmallInt
+  shortString     String?        @db.VarChar(5)
   relatedEntityId Int?
   relatedEntity   RelatedEntity? @relation(fields: [relatedEntityId], references: [id])
 }

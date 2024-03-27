@@ -2,6 +2,47 @@ import type { Prisma } from '@prisma/client';
 import { StatusCodes, getReasonPhrase } from 'http-status-codes';
 
 import { PrismaError } from './PrismaError';
+import { PrismaErrorToHttpCodeMap } from './types';
+
+export const DEFAULT_CLIENT_KNOWN_REQUEST_ERROR_MAPPING: PrismaErrorToHttpCodeMap = {
+  P2001: StatusCodes.NOT_FOUND,
+  P2015: StatusCodes.NOT_FOUND,
+  P2018: StatusCodes.NOT_FOUND,
+  P2021: StatusCodes.NOT_FOUND,
+  P2022: StatusCodes.NOT_FOUND,
+  P2025: StatusCodes.NOT_FOUND,
+  P2002: StatusCodes.CONFLICT,
+  P2003: StatusCodes.CONFLICT,
+  P2000: StatusCodes.BAD_REQUEST,
+  P2004: StatusCodes.BAD_REQUEST,
+  P2005: StatusCodes.BAD_REQUEST,
+  P2006: StatusCodes.BAD_REQUEST,
+  P2007: StatusCodes.BAD_REQUEST,
+  P2008: StatusCodes.BAD_REQUEST,
+  P2009: StatusCodes.BAD_REQUEST,
+  P2011: StatusCodes.BAD_REQUEST,
+  P2012: StatusCodes.BAD_REQUEST,
+  P2013: StatusCodes.BAD_REQUEST,
+  P2014: StatusCodes.BAD_REQUEST,
+  P2016: StatusCodes.BAD_REQUEST,
+  P2017: StatusCodes.BAD_REQUEST,
+  P2019: StatusCodes.BAD_REQUEST,
+  P2020: StatusCodes.BAD_REQUEST,
+  P2023: StatusCodes.BAD_REQUEST,
+  P2026: StatusCodes.BAD_REQUEST,
+  P2029: StatusCodes.BAD_REQUEST,
+  P2033: StatusCodes.BAD_REQUEST,
+  P2024: StatusCodes.REQUEST_TIMEOUT,
+  P2010: StatusCodes.INTERNAL_SERVER_ERROR,
+  P2027: StatusCodes.INTERNAL_SERVER_ERROR,
+  P2028: StatusCodes.INTERNAL_SERVER_ERROR,
+  P2030: StatusCodes.INTERNAL_SERVER_ERROR,
+  P2031: StatusCodes.INTERNAL_SERVER_ERROR,
+  P2034: StatusCodes.INTERNAL_SERVER_ERROR,
+  P2035: StatusCodes.INTERNAL_SERVER_ERROR,
+  P2036: StatusCodes.INTERNAL_SERVER_ERROR,
+  P2037: StatusCodes.INTERNAL_SERVER_ERROR,
+};
 
 export class PrismaClientKnownError extends PrismaError {
   constructor(statusCode: StatusCodes, error: Prisma.PrismaClientKnownRequestError) {
@@ -15,55 +56,13 @@ export class PrismaClientKnownError extends PrismaError {
 
 export function handleClientKnownRequestError(
   error: Prisma.PrismaClientKnownRequestError,
+  overrideMapping?: PrismaErrorToHttpCodeMap,
 ): PrismaError {
-  switch (error.code) {
-    case 'P2000':
-      return new PrismaClientKnownError(StatusCodes.REQUEST_TOO_LONG, error);
+  const finalMapping = { ...DEFAULT_CLIENT_KNOWN_REQUEST_ERROR_MAPPING, ...overrideMapping };
 
-    case 'P2001':
-    case 'P2015':
-    case 'P2018':
-      return new PrismaClientKnownError(StatusCodes.NOT_FOUND, error);
-
-    case 'P2002':
-    case 'P2034':
-      return new PrismaClientKnownError(StatusCodes.CONFLICT, error);
-
-    case 'P2005':
-    case 'P2006':
-    case 'P2008':
-    case 'P2011':
-    case 'P2012':
-    case 'P2013':
-    case 'P2014':
-    case 'P2019':
-    case 'P2020':
-    case 'P2023':
-    case 'P2033':
-      return new PrismaClientKnownError(StatusCodes.BAD_REQUEST, error);
-
-    case 'P2007':
-      return new PrismaClientKnownError(StatusCodes.UNPROCESSABLE_ENTITY, error);
-
-    case 'P2024':
-      return new PrismaClientKnownError(StatusCodes.REQUEST_TIMEOUT, error);
-
-    case 'P2003':
-    case 'P2004':
-    case 'P2010':
-    case 'P2016':
-    case 'P2017':
-    case 'P2021':
-    case 'P2022':
-    case 'P2025':
-    case 'P2026':
-    case 'P2027':
-    case 'P2028':
-    case 'P2030':
-    case 'P2031':
-      return new PrismaClientKnownError(StatusCodes.INTERNAL_SERVER_ERROR, error);
-
-    default:
-      return new PrismaError(500, 'Unknown Error', { code: error.code, message: error.message });
+  if (finalMapping[error.code]) {
+    return new PrismaClientKnownError(finalMapping[error.code], error);
   }
+
+  return new PrismaError(500, 'Unknown Error', { code: error.code, message: error.message });
 }
