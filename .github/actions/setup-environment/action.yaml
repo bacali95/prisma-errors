@@ -1,6 +1,11 @@
 name: 'Setup environment'
 description: 'This action will checkout code, setup node and retrieve the cache'
 
+inputs:
+  npm-token:
+    description: NPM Token
+    required: false
+
 runs:
   using: composite
   steps:
@@ -13,7 +18,7 @@ runs:
       with:
         node-version: 20
         scope: '@prisma-errors'
-        token: ${{ secrets.NPM_AUTH_TOKEN }}
+        token: ${{ inputs.npm-token }}
 
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
@@ -22,7 +27,6 @@ runs:
 
     - name: Restore yarn cache 📦
       uses: actions/cache/restore@v4
-      if: inputs.skip-install != 'true'
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
         key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
@@ -35,7 +39,6 @@ runs:
 
     - name: Save yarn cache 📦
       uses: actions/cache/save@v4
-      if: inputs.skip-install != 'true'
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
         key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}

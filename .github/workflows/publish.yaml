@@ -17,6 +17,8 @@ jobs:
         uses: actions/checkout@v4
 
       - uses: ./.github/actions/setup-environment
+        with:
+          npm-token: ${{ secrets.NPM_AUTH_TOKEN }}
 
       - name: Lint the code 🕵
         run: yarn lint prisma-errors-core
@@ -41,6 +43,7 @@ jobs:
         run: |
           cp LICENCE README.md dist/libs/prisma-errors-core
           cd dist/libs/prisma-errors-core
+          cat `npm config get userconfig`
           echo $NODE_AUTH_TOKEN
           npm publish --tag latest --access public
         env:
