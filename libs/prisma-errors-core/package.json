@@ -1,6 +1,6 @@
 {
   "name": "@prisma-errors/core",
-  "description": "A set of React components build with TailwindCSS to make a nice dashboard.",
+  "description": "The core library of handling prisma errors.",
   "version": "0.0.6",
   "license": "MIT",
   "homepage": "https://bacali95.github.io/prisma-errors",
