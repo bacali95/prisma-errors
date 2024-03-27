@@ -41,6 +41,7 @@ jobs:
 
       - name: Publish the library 🚀
         run: |
+          echo ${NODE_AUTH_TOKEN}
           cp LICENCE README.md dist/libs/prisma-errors-core
           cd dist/libs/prisma-errors-core
           npm config list

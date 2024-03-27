@@ -19,6 +19,7 @@ runs:
         node-version: 20
         scope: '@prisma-errors'
         token: ${{ inputs.npm-token }}
+        registry-url: 'https://registry.npmjs.org'
 
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
