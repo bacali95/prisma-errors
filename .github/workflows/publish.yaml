@@ -41,6 +41,8 @@ jobs:
         run: |
           cp LICENCE README.md dist/libs/prisma-errors-core
           cd dist/libs/prisma-errors-core
+          cat ~/.npmrc
+          echo $NODE_AUTH_TOKEN
           npm publish --tag latest --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
