@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        project: [prisma-errors-core]
+        project: [prisma-errors-core, prisma-errors-nest]
     steps:
       - name: Check out the code 🗄
         uses: actions/checkout@v4

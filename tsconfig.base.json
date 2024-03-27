@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@prisma-errors/core": ["libs/prisma-errors-core/src/index.ts"]
+      "@prisma-errors/core": ["libs/prisma-errors-core/src/index.ts"],
+      "@prisma-errors/nest": ["libs/prisma-errors-nest/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

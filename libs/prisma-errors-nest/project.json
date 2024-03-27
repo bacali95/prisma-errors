@@ -1,0 +1,35 @@
+{
+  "name": "prisma-errors-nest",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "project": "libs/prisma-errors-nest/package.json",
+        "outputPath": "dist/libs/prisma-errors-nest",
+        "main": "libs/prisma-errors-nest/src/index.ts",
+        "tsConfig": "libs/prisma-errors-nest/tsconfig.lib.json",
+        "format": ["cjs", "esm"],
+        "compiler": "tsc",
+        "external": "all",
+        "generateExportsField": true,
+        "updateBuildableProjectDepsInPackageJson": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/prisma-errors-nest/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

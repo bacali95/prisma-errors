@@ -53,8 +53,14 @@
   },
   "standard-version": {
     "commitAll": true,
-    "packageFiles": "libs/prisma-errors-core/package.json",
-    "bumpFiles": "libs/prisma-errors-core/package.json"
+    "packageFiles": [
+      "libs/prisma-errors-core/package.json",
+      "libs/prisma-errors-nest/package.json"
+    ],
+    "bumpFiles": [
+      "libs/prisma-errors-core/package.json",
+      "libs/prisma-errors-nest/package.json"
+    ]
   },
   "volta": {
     "node": "20.11.1",
