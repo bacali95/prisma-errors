@@ -21,7 +21,7 @@ jobs:
       - uses: ./.github/actions/setup-environment
 
       - name: Lint the code 🕵
-        run: yarn lint ${{ matrix.project }}
+        run: yarn nx lint ${{ matrix.project }}
 
       - name: Check the prettiness of the code 💅
         run: yarn prettier:check ${{ matrix.project }}
@@ -33,7 +33,7 @@ jobs:
           yarn prisma:migrate:deploy
 
       - name: Run unit tests 🧪
-        run: yarn test ${{ matrix.project }}
+        run: yarn nx test ${{ matrix.project }}
 
       - name: Build code 🛠
-        run: yarn build ${{ matrix.project }}
+        run: yarn nx build ${{ matrix.project }}

@@ -15,5 +15,8 @@
   },
   "bugs": {
     "url": "https://github.com/bacali95/prisma-errors/issues"
+  },
+  "dependencies": {
+    "@prisma-errors/core": "^0"
   }
 }

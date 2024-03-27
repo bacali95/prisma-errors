@@ -15,5 +15,9 @@
   },
   "bugs": {
     "url": "https://github.com/bacali95/prisma-errors/issues"
+  },
+  "dependencies": {
+    "@prisma/client": "^5",
+    "http-status-codes": "^2"
   }
 }

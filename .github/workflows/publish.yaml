@@ -21,7 +21,7 @@ jobs:
           npm-token: ${{ secrets.NPM_AUTH_TOKEN }}
 
       - name: Lint the code 🕵
-        run: yarn lint prisma-errors-core
+        run: yarn nx lint prisma-errors-core
 
       - name: Check the prettiness of the code 💅
         run: yarn prettier:check
@@ -34,10 +34,10 @@ jobs:
           yarn prisma:migrate:deploy
 
       - name: Run unit tests 🧪
-        run: yarn test prisma-errors-core
+        run: yarn nx test prisma-errors-core
 
       - name: Build code 🛠
-        run: yarn build prisma-errors-core
+        run: yarn nx build prisma-errors-core
 
       - name: Publish the library 🚀
         run: |
